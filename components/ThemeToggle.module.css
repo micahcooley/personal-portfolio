@@ -1,0 +1,74 @@
+.toggle {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.toggle:hover {
+    background: var(--bg-hover);
+}
+
+.iconContainer {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Sun icon - visible in light mode */
+.sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    color: var(--text-primary);
+}
+
+.dark .sun {
+    opacity: 0;
+    transform: rotate(180deg) scale(0);
+}
+
+/* Moon icon - visible in dark mode */
+.moon {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0);
+    color: var(--text-primary);
+}
+
+.dark .moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Hover effects */
+.toggle:hover .sun:not(.dark .sun) {
+    transform: rotate(15deg);
+}
+
+.toggle:hover .moon {
+    transform: rotate(-15deg);
+}
+
+.dark .toggle:hover .moon {
+    transform: rotate(-15deg);
+}
+
+/* Click animation */
+.toggle:active {
+    transform: scale(0.9);
+}
