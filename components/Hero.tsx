@@ -6,6 +6,7 @@ import styles from './Hero.module.css';
 export default function Hero() {
     const heroRef = useRef<HTMLElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     // Interactive cursor follower
@@ -27,6 +28,14 @@ export default function Hero() {
         }
     }, []);
 
+    useEffect(() => {
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, []);
+
     // Text scramble effect on hover
     const handleNameHover = (e: React.MouseEvent<HTMLHeadingElement>) => {
         const target = e.currentTarget;
@@ -34,7 +43,11 @@ export default function Hero() {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let iteration = 0;
 
-        const interval = setInterval(() => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        intervalRef.current = setInterval(() => {
             target.innerText = originalText
                 .split('')
                 .map((letter, index) => {
@@ -46,7 +59,7 @@ export default function Hero() {
                 .join('');
 
             if (iteration >= originalText.length) {
-                clearInterval(interval);
+                if (intervalRef.current) clearInterval(intervalRef.current);
             }
 
             iteration += 1 / 2;
