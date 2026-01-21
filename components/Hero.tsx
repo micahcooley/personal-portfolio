@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -81,12 +82,12 @@ export default function Hero() {
                         Bringing stories to life through performance, research, and the art of storytelling on stage.
                     </p>
                     <div className={styles.cta}>
-                        <a href="/performance" className="btn btn-primary">
+                        <Link href="/performance" className="btn btn-primary">
                             View My Work
-                        </a>
-                        <a href="/about" className="btn btn-secondary">
+                        </Link>
+                        <Link href="/about" className="btn btn-secondary">
                             About Me
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
