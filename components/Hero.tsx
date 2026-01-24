@@ -1,30 +1,69 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from './Hero.module.css';
 
 export default function Hero() {
     const heroRef = useRef<HTMLElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const spotlightRef = useRef<HTMLDivElement>(null);
+
+    // Refs for performance optimization (avoiding state)
+    const mousePos = useRef({ x: 0, y: 0 });
+    const heroRect = useRef<DOMRect | null>(null);
+    const requestRef = useRef<number | null>(null);
 
     // Interactive cursor follower
     useEffect(() => {
+        const updateSpotlight = () => {
+            if (spotlightRef.current) {
+                const { x, y } = mousePos.current;
+                // Use transform instead of left/top for performance
+                // We append translate(-50%, -50%) to maintain the centering defined in CSS
+                spotlightRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+            }
+            requestRef.current = null;
+        };
+
         const handleMouseMove = (e: MouseEvent) => {
+            if (!heroRect.current && heroRef.current) {
+                heroRect.current = heroRef.current.getBoundingClientRect();
+            }
+
+            if (heroRect.current) {
+                mousePos.current.x = e.clientX - heroRect.current.left;
+                mousePos.current.y = e.clientY - heroRect.current.top;
+
+                if (requestRef.current === null) {
+                    requestRef.current = requestAnimationFrame(updateSpotlight);
+                }
+            }
+        };
+
+        const updateRect = () => {
             if (heroRef.current) {
-                const rect = heroRef.current.getBoundingClientRect();
-                setMousePos({
-                    x: e.clientX - rect.left,
-                    y: e.clientY - rect.top,
-                });
+                heroRect.current = heroRef.current.getBoundingClientRect();
             }
         };
 
         const hero = heroRef.current;
         if (hero) {
+            updateRect();
             hero.addEventListener('mousemove', handleMouseMove);
-            return () => hero.removeEventListener('mousemove', handleMouseMove);
+            window.addEventListener('resize', updateRect);
+            window.addEventListener('scroll', updateRect, { capture: true });
         }
+
+        return () => {
+            if (hero) {
+                hero.removeEventListener('mousemove', handleMouseMove);
+            }
+            window.removeEventListener('resize', updateRect);
+            window.removeEventListener('scroll', updateRect, { capture: true });
+            if (requestRef.current) {
+                cancelAnimationFrame(requestRef.current);
+            }
+        };
     }, []);
 
     // Text scramble effect on hover
@@ -57,10 +96,14 @@ export default function Hero() {
         <section ref={heroRef} className={styles.hero}>
             {/* Interactive cursor spotlight */}
             <div
+                ref={spotlightRef}
                 className={styles.spotlight}
                 style={{
-                    left: mousePos.x,
-                    top: mousePos.y,
+                    // Initial hidden state or default position could be set here if needed,
+                    // but CSS handles the basics.
+                    // We remove top/left and let JS handle transform.
+                    top: 0,
+                    left: 0,
                 }}
             />
 
