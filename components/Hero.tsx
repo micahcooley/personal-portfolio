@@ -6,6 +6,7 @@ import styles from './Hero.module.css';
 export default function Hero() {
     const heroRef = useRef<HTMLElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     // Interactive cursor follower
@@ -34,8 +35,12 @@ export default function Hero() {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let iteration = 0;
 
-        const interval = setInterval(() => {
-            target.innerText = originalText
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        intervalRef.current = setInterval(() => {
+            target.textContent = originalText
                 .split('')
                 .map((letter, index) => {
                     if (index < iteration) {
@@ -46,11 +51,20 @@ export default function Hero() {
                 .join('');
 
             if (iteration >= originalText.length) {
-                clearInterval(interval);
+                if (intervalRef.current) clearInterval(intervalRef.current);
             }
 
             iteration += 1 / 2;
         }, 40);
+    };
+
+    const handleNameLeave = (e: React.MouseEvent<HTMLHeadingElement>) => {
+        const target = e.currentTarget;
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+        target.textContent = 'Micah';
     };
 
     return (
@@ -69,6 +83,7 @@ export default function Hero() {
                     <h1
                         className={styles.name}
                         onMouseEnter={handleNameHover}
+                        onMouseLeave={handleNameLeave}
                     >
                         Micah
                     </h1>
