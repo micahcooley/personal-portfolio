@@ -37,7 +37,7 @@ export default function PerformancePage() {
                         <article className={styles.monologueCard}>
                             <h2 className={styles.monologueTitle}>Hot Topic Monologue</h2>
                             <div className={styles.monologueContent}>
-                                <p>To get to know me you must know these 3 things first.</p>
+                                <p>To get to know me you must know these 4 things first.</p>
                                 <p>
                                     I love crushing smarties into a fine powder before eating them, especially when I've
                                     pulverized them to the point where they are no longer crunchy at all and are more like
@@ -68,8 +68,9 @@ export default function PerformancePage() {
                                     because your a giant compared to it.
                                 </p>
                                 <p>
-                                    So if you see me eating pulverized smarties while debugging a tech issue and critiquing
-                                    the lack of salt in the family dinner, then just let me be because that's just who I am.
+                                    So if you see me eating pulverized smarties while debugging a tech issue, critiquing
+                                    the lack of salt in the family dinner, or ignoring someone crying about a spider, then
+                                    just let me be because that's just who I am.
                                 </p>
                             </div>
                         </article>
