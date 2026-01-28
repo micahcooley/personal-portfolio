@@ -78,7 +78,7 @@ export default function Performance() {
                     <h3 className={styles.monologueTitle}>Hot Topic Monologue</h3>
                     <div className={styles.monologueContent}>
                         <p>
-                            To get to know me you must know these 3 things first.
+                            To get to know me you must know these 4 things first.
                         </p>
                         <p>
                             I love crushing smarties into a fine powder before eating them, especially when I've
@@ -101,8 +101,18 @@ export default function Performance() {
                             the finishing touches on dinner to make sure the flavor profile is complete.
                         </p>
                         <p>
-                            So if you see me eating pulverized smarties while debugging a tech issue and critiquing
-                            the lack of salt in the family dinner, then just let me be because that's just who I am.
+                            I also cant stand when people complain about stupid things. For example when my sister
+                            complains about a spider in her shower and starts full out crying about it until someone
+                            goes in there too remove it. I especially hate it because the solution to these types
+                            of situations are usually very easy or simply, not everyone else's problem and back to
+                            the spider example you can just remove it with a piece of toilet paper or just ignore it.
+                            It's not going to go out of its way to hurt you. If anything it should be scared of you
+                            because your a giant compared to it.
+                        </p>
+                        <p>
+                            So if you see me eating pulverized smarties while debugging a tech issue, critiquing
+                            the lack of salt in the family dinner, or ignoring someone crying about a spider, then
+                            just let me be because that's just who I am.
                         </p>
                     </div>
                 </div>

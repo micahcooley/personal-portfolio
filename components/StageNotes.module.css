@@ -104,8 +104,117 @@
     transform: translateX(4px);
 }
 
+/* Rasaboxes Section */
+.rasaboxesSection {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.rasaboxesSection.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.rasaboxesHeadline {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+    letter-spacing: -0.03em;
+}
+
+.rasaboxesIntro {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+    transition: all var(--transition-base);
+}
+
+.rasaboxesIntro:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.rasaboxesIntro p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.rasasTitle {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.rasasGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.rasaCard {
+    background: var(--bg-card, var(--bg-secondary));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all var(--transition-base);
+}
+
+.rasaCard.visible {
+    animation: cardReveal 0.6s ease forwards;
+}
+
+.rasaCard:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+
+.rasaName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.rasaMeaning {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-md);
+    opacity: 0.8;
+}
+
+.rasaDescription {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+
+    .rasasGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .rasaboxesIntro {
+        padding: var(--space-lg);
     }
 }

@@ -127,3 +127,109 @@
     color: var(--text-secondary);
     line-height: 1.8;
 }
+
+/* Rasaboxes Section */
+.rasaboxesSection {
+    padding: 1rem 0;
+}
+
+.rasaboxesHeadline {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: -0.03em;
+}
+
+.rasaboxesIntro {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
+}
+
+.rasaboxesIntro:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.rasaboxesIntro p {
+    font-size: 1.0625rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.rasasTitle {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.rasasGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.rasaCard {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    opacity: 0;
+    animation: cardFadeIn 0.6s ease forwards;
+    transition: all 0.3s ease;
+}
+
+.rasaCard:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+
+@keyframes cardFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.rasaName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.rasaMeaning {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    opacity: 0.75;
+}
+
+.rasaDescription {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .rasasGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .rasaboxesIntro {
+        padding: 1.5rem;
+    }
+}

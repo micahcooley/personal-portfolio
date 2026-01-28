@@ -3,10 +3,52 @@
 import { useRef, useEffect, useState } from 'react';
 import styles from './StageNotes.module.css';
 
-const notes = [
-    { id: 1, title: 'Note Title 1', date: 'January 2024', excerpt: 'A brief insight or reflection on a theatrical topic, production process, or artistic discovery...' },
-    { id: 2, title: 'Note Title 2', date: 'December 2023', excerpt: 'A brief insight or reflection on a theatrical topic, production process, or artistic discovery...' },
-    { id: 3, title: 'Note Title 3', date: 'November 2023', excerpt: 'A brief insight or reflection on a theatrical topic, production process, or artistic discovery...' },
+const rasas = [
+    {
+        name: 'Shringara',
+        meaning: 'Love and Beauty',
+        description: 'This is the feeling of romance and attraction. Think of that warm flutter you get when you see someone you care about or when you experience something truly beautiful.'
+    },
+    {
+        name: 'Hasya',
+        meaning: 'Joy and Laughter',
+        description: 'Pure happiness and humor. Its that lightness you feel when you laugh with friends or find genuine delight in a moment.'
+    },
+    {
+        name: 'Karuna',
+        meaning: 'Compassion and Sorrow',
+        description: 'The deep feeling of empathy when you witness pain or loss. It connects us to others through our shared experiences of grief and care.'
+    },
+    {
+        name: 'Raudra',
+        meaning: 'Anger and Rage',
+        description: 'That fiery intensity when something feels unjust or when passion overtakes calm. Its powerful and demands to be expressed.'
+    },
+    {
+        name: 'Veera',
+        meaning: 'Courage and Heroism',
+        description: 'The bold energy that pushes you forward despite fear. Its confidence and determination rolled into one.'
+    },
+    {
+        name: 'Bhayanaka',
+        meaning: 'Fear and Terror',
+        description: 'That gripping sensation when danger feels close. Your heart races, your senses sharpen, and everything feels urgent.'
+    },
+    {
+        name: 'Bibhatsa',
+        meaning: 'Disgust and Aversion',
+        description: 'The strong reaction to something deeply unpleasant. Its your instinct pulling you away from what feels wrong or offensive.'
+    },
+    {
+        name: 'Adbhuta',
+        meaning: 'Wonder and Amazement',
+        description: 'That breathless moment when you encounter something extraordinary. Pure awe that makes the world feel magical.'
+    },
+    {
+        name: 'Shanta',
+        meaning: 'Peace and Serenity',
+        description: 'Complete stillness and calm. Its the quiet contentment that comes when everything feels balanced and right.'
+    }
 ];
 
 export default function StageNotes() {
@@ -41,37 +83,36 @@ export default function StageNotes() {
                     </p>
                 </div>
 
-                <div className={styles.grid}>
-                    {notes.map((note, index) => (
-                        <article
-                            key={note.id}
-                            className={`${styles.card} ${isVisible ? styles.visible : ''}`}
-                            style={{ animationDelay: `${index * 0.15}s` }}
-                        >
-                            <div className={styles.imageWrapper}>
-                                <div className={`image-placeholder ${styles.imagePlaceholder}`}>
-                                    <svg className="image-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                        <polyline points="14,2 14,8 20,8" />
-                                        <line x1="8" y1="13" x2="16" y2="13" />
-                                        <line x1="8" y1="17" x2="14" y2="17" />
-                                    </svg>
-                                    <span className={styles.placeholderLabel}>Cover Image</span>
-                                </div>
+                {/* Rasaboxes Section */}
+                <div className={`${styles.rasaboxesSection} ${isVisible ? styles.visible : ''}`}>
+                    <h3 className={styles.rasaboxesHeadline}>Understanding Rasaboxes</h3>
+
+                    <div className={styles.rasaboxesIntro}>
+                        <p>
+                            Rasaboxes is a training technique used by actors to explore and embody different emotional states.
+                            The idea comes from ancient Indian theater theory where emotions are mapped out into specific categories called rasas.
+                            In practice you literally step into boxes drawn on the floor, each box representing a different emotion.
+                            When you enter a box you commit fully to that feeling in your body and voice.
+                            Its a physical way to understand emotions rather than just thinking about them.
+                            The technique helps actors access genuine feelings quickly and teaches you how emotions live in your body not just your head.
+                        </p>
+                    </div>
+
+                    <h4 className={styles.rasasTitle}>The Nine Rasas</h4>
+
+                    <div className={styles.rasasGrid}>
+                        {rasas.map((rasa, index) => (
+                            <div
+                                key={rasa.name}
+                                className={`${styles.rasaCard} ${isVisible ? styles.visible : ''}`}
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                            >
+                                <h5 className={styles.rasaName}>{rasa.name}</h5>
+                                <span className={styles.rasaMeaning}>{rasa.meaning}</span>
+                                <p className={styles.rasaDescription}>{rasa.description}</p>
                             </div>
-                            <div className={styles.content}>
-                                <span className={styles.date}>{note.date}</span>
-                                <h3 className={styles.title}>{note.title}</h3>
-                                <p className={styles.excerpt}>{note.excerpt}</p>
-                                <button className={styles.readMore}>
-                                    Read Article
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </article>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
